@@ -36,24 +36,55 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+# While debugging, use the built-in server's static file serving mechanism.
+# In production, host all files on S3.
+if not DEBUG:
+    # Access information for the S3 bucket
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+    AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+    # Static files are stored in the bucket at /static
+    # and user-uploaded files are stored at /media
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
+    DEFAULT_S3_PATH = 'media'
+    STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
+    STATIC_S3_PATH = 'static'
+    AWS_S3_SECURE_URLS = False
+    AWS_QUERYSTRING_AUTH = False
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+    # Construct the paths to resources on S3 via
+    # the bucket name and the necessary paths
+    MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
+    MEDIA_URL = '//%s.s3.amazonaws.com/%s/' % \
+            (AWS_STORAGE_BUCKET_NAME, DEFAULT_S3_PATH)
+    STATIC_ROOT = '/%s/' % STATIC_S3_PATH
+    STATIC_URL = '//%s.s3.amazonaws.com/%s/' % \
+            (AWS_STORAGE_BUCKET_NAME, STATIC_S3_PATH)
+    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+else:
+    # Absolute filesystem path to the directory
+    # that will hold user-uploaded files.
+    # Example: "/home/media/media.lawrence.com/media/"
+    MEDIA_ROOT = ''
 
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+    # URL that handles the media served from MEDIA_ROOT. Make sure to use a
+    # trailing slash.
+    # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+    MEDIA_URL = ''
+
+    # Absolute path to the directory static files should be collected to.
+    # Don't put anything in this directory yourself; store your static files
+    # in apps' "static/" subdirectories and in STATICFILES_DIRS.
+    # Example: "/home/media/media.lawrence.com/static/"
+    STATIC_ROOT = ''
+
+    # URL prefix for static files.
+    # Example: "http://media.lawrence.com/static/"
+    STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (

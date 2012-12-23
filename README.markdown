@@ -49,6 +49,21 @@ Initially, and when the schema changes, run `syncdb` and `migrate`.
     heroku run python manage.py migrate
 
 You can view your new deployment in your browser via `heroku open`.
+Static file serving will be broken as this requires an S3 account.
+Create a bucket on S3 and add the configuration to your Heroku installation.
+
+    heroku config:add AWS_ACCESS_KEY_ID="<AWS access key>"
+    heroku config:add AWS_SECRET_ACCESS_KEY="<AWS secret>"
+    heroku config:add AWS_STORAGE_BUCKET_NAME="<bucket name>"
+
+
+You can manually run `collectstatic via
+
+    heroku run python manage.py collectstatic --noinput
+
+Optionally, to have `collectstatic` run automatically on every deploy, use
+
+    heroku labs:enable user-env-compile
 
 
 Dependency management

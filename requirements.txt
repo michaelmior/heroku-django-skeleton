@@ -1,5 +1,8 @@
 -e git+https://github.com/django/django.git@82d4786544e2331b23de468aba875e9600162d76#egg=Django-dev
 South==0.7.6
+boto==2.6.0
 dj-database-url==0.2.1
+django-s3-folder-storage==0.1
+django-storages==1.1.5
 gunicorn==0.16.1
 psycopg2==2.4.6
