@@ -111,6 +111,13 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'app.main.context_processors.site',
+
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth'
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -133,6 +140,9 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'app.main',
+    'app.bootstrap',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

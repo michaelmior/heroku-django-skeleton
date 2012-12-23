@@ -1,0 +1,36 @@
+{% load captureas %}
+{% load static %}
+
+{% captureas title %}
+  {% block title %}{% endblock %}
+{% endcaptureas %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ title }} - {{ site.name }}</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="nav-collapse collapse">
+            <a class="brand" href="/">{{ site.name }}</a>
+            <ul class="nav">
+              {# Add menu items here #}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h1>{{ title }}</h1>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
