@@ -1,4 +1,4 @@
--e git+https://github.com/django/django.git@82d4786544e2331b23de468aba875e9600162d76#egg=Django-dev
+Django==1.5
 South==0.7.6
 boto==2.6.0
 dj-database-url==0.2.1
