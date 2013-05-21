@@ -2,7 +2,7 @@ Introduction
 ==
 
 This project is a simple skeleton to get you started with Django and Heroku.
-It currently uses Django 1.5 beta 2, but will switch to 1.5 stable when available.
+It currently uses the stable release of Django 1.5.
 The steps below should get you up and running quickly.
 
 Installation
