@@ -37,7 +37,12 @@ Deployment
 ==
 
 The project is already set up for easy deployment with Heroku.
-To create a new instance, run `heroku create`.
+To create a new instance, run `heroku bootstrap`.
+This requires the [heroku.json](https://github.com/rainforestapp/heroku.json) plugin which can be installed via `heroku plugins:install git@github.com:rainforestapp/heroku.json.git`.
+Note that you will be warned that your account will be charged for the addons installed.
+While I make no guarantees, I have attempted to select only free addons which leave room to upgrade.
+You are still responsible for verifying any fees associated with any addons which will be installed.
+
 To maintain the security of your installation, Django's secret key must be set to a [random string](https://www.grc.com/passwords.htm).
 
     heroku config:add DJANGO_SECRET_KEY="<random string here>"

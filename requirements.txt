@@ -2,7 +2,11 @@ Django==1.5
 South==0.7.6
 boto==2.6.0
 dj-database-url==0.2.1
+django-heroku-redisify==0.2.1
+django-redis-cache==0.9.7
 django-s3-folder-storage==0.1
 django-storages==1.1.5
 gunicorn==0.16.1
+hiredis==0.1.1
 psycopg2==2.4.6
+redis==2.7.5

@@ -13,6 +13,9 @@ MANAGERS = ADMINS
 import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
 
+from redisify import redisify
+CACHES = redisify(default='redis://localhost')
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
