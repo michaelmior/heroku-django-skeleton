@@ -4,6 +4,7 @@ boto==2.6.0
 dj-database-url==0.2.1
 django-heroku-redisify==0.2.1
 django-redis-cache==0.9.7
+django-redis-sessions==0.4.0
 django-s3-folder-storage==0.1
 django-storages==1.1.5
 gunicorn==0.16.1

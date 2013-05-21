@@ -16,6 +16,15 @@ DATABASES = {'default': dj_database_url.config()}
 from redisify import redisify
 CACHES = redisify(default='redis://localhost')
 
+# Configure sessions using Redis. This depends on the caching settings above.
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS_HOST, SESSION_REDIS_PORT = \
+        CACHES['default']['LOCATION'].split(':')
+SESSION_REDIS_PORT = int(SESSION_REDIS_PORT)
+SESSION_REDIS_DB = CACHES['default']['OPTIONS']['DB']
+SESSION_REDIS_PASSWORD = CACHES['default']['OPTIONS']['PASSWORD']
+SESSION_REDIS_PREFIX = 'sess'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
