@@ -8,5 +8,6 @@ django-s3-folder-storage==0.1
 django-storages==1.1.5
 gunicorn==0.16.1
 hiredis==0.1.1
+newrelic==1.11.0.55
 psycopg2==2.4.6
 redis==2.7.5
