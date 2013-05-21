@@ -16,7 +16,7 @@ import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
 
 from redisify import redisify
-CACHES = redisify(default='redis://localhost')
+CACHES = redisify(default='redis://localhost/0')
 
 # Configure sessions using Redis. This depends on the caching settings above.
 SESSION_ENGINE = 'redis_sessions.session'
@@ -26,6 +26,13 @@ SESSION_REDIS_PORT = int(SESSION_REDIS_PORT)
 SESSION_REDIS_DB = CACHES['default']['OPTIONS']['DB']
 SESSION_REDIS_PASSWORD = CACHES['default']['OPTIONS']['PASSWORD']
 SESSION_REDIS_PREFIX = 'sess'
+
+# Use Redis as the broker for Celery tasks
+BROKER_URL = (lambda password, db: 'redis://:%%s@%(LOCATION)s/%%d' \
+        % CACHES['default'] % (password, db))( \
+          CACHES['default']['OPTIONS']['PASSWORD'] or '',
+          CACHES['default']['OPTIONS']['DB'] or 0,
+        )
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -170,6 +177,7 @@ INSTALLED_APPS = (
     'south',
     'gunicorn',
     'raven.contrib.django',
+    'djcelery',
 )
 
 # A sample logging configuration. The only tangible logging

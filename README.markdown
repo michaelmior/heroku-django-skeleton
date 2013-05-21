@@ -76,3 +76,13 @@ Dependency management
 
 To add a new dependency to your project, simply install via `pip install` after activating the virtualenv.
 To track newly installed packages, run `pip freeze -l > requirements.txt` to update the requirements file.
+
+Background tasks
+==
+This project is ready to go with background jobs via [Celery](http://www.celeryproject.org/).
+Just define a task as specified in [the documentation](http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html#defining-and-calling-tasks).
+
+By default, no workers will be running. To start one, run the following command.
+Note that you WILL be billed by Heroku for running this additional dyno.
+
+    heroku ps:scale celery=1
