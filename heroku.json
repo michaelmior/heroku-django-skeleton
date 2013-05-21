@@ -3,7 +3,8 @@
     "heroku-postgresql:dev",
     "pgbackups:auto-month",
     "rediscloud:20",
-    "newrelic:standard"
+    "newrelic:standard",
+    "sentry:developer"
   ],
   "env": {}
 }
