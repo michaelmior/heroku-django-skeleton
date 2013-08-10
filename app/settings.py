@@ -133,6 +133,7 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
+    'app.main.context_processors.settings',
     'app.main.context_processors.site',
 
     'django.core.context_processors.request',
