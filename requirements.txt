@@ -6,6 +6,7 @@ billiard==2.7.3.28
 boto==2.6.0
 celery==3.0.19
 celery-with-redis==3.0
+distribute==0.6.34
 dj-database-url==0.2.1
 django-celery==3.0.17
 django-celery-with-redis==3.0
@@ -13,6 +14,7 @@ django-heroku-redisify==0.2.1
 django-redis-cache==0.9.7
 django-redis-sessions==0.4.0
 django-s3-folder-storage==0.1
+django-secure==1.0
 django-storages==1.1.5
 gunicorn==0.16.1
 hiredis==0.1.1

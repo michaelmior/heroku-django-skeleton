@@ -26,6 +26,7 @@ SESSION_REDIS_PORT = int(SESSION_REDIS_PORT)
 SESSION_REDIS_DB = CACHES['default']['OPTIONS']['DB']
 SESSION_REDIS_PASSWORD = CACHES['default']['OPTIONS']['PASSWORD']
 SESSION_REDIS_PREFIX = 'sess'
+SESSION_COOKIE_SECURE = True
 
 # Use Redis as the broker for Celery tasks
 BROKER_URL = (lambda password, db: 'redis://:%%s@%(LOCATION)s/%%d' \
@@ -141,6 +142,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'djangosecure.middleware.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -178,7 +180,17 @@ INSTALLED_APPS = (
     'gunicorn',
     'raven.contrib.django',
     'djcelery',
+    'djangosecure',
 )
+
+# Security
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 60 * 60  # 1 hour
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_FRAME_DENY = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
