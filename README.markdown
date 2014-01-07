@@ -86,3 +86,7 @@ By default, no workers will be running. To start one, run the following command.
 Note that you WILL be billed by Heroku for running this additional dyno.
 
     heroku ps:scale celery=1
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/michaelmior/heroku-django-skeleton/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
