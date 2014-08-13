@@ -6,7 +6,6 @@ billiard==3.3.0.18
 boto==2.32.1
 celery==3.1.13
 celery-with-redis==3.0
-distribute==0.7.3
 dj-database-url==0.3.0
 django-celery==3.1.10
 django-celery-with-redis==3.0
