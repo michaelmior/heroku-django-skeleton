@@ -1,3 +1,5 @@
+[![Dependency Status](https://gemnasium.com/michaelmior/heroku-django-skeleton.svg)](https://gemnasium.com/michaelmior/heroku-django-skeleton)
+
 Introduction
 ==
 
