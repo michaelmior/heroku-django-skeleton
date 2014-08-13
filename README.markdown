@@ -71,6 +71,7 @@ Dependency management
 
 To add a new dependency to your project, simply install via `pip install` after activating the virtualenv.
 To track newly installed packages, run `pip freeze -l > requirements.txt` to update the requirements file.
+Note that you should manually remove `setuptools` or `distribute` if they appear in this file as this can cause slug compilation to fail.
 
 Background tasks
 ==
