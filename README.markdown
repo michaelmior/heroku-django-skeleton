@@ -36,16 +36,12 @@ You can then access the local development server at [`http://localhost:8000/`](h
 Deployment
 ==
 
-The project is already set up for easy deployment with Heroku.
-To create a new instance, run `heroku bootstrap`.
-This requires the [heroku.json](https://github.com/rainforestapp/heroku.json) plugin which can be installed via `heroku plugins:install git@github.com:rainforestapp/heroku.json.git`.
-Note that you will be warned that your account will be charged for the addons installed.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+The project is already set up for easy deployment with Heroku by clicking the button above.
+Note that you will be warned if your account will be charged for the addons installed.
 While I make no guarantees, I have attempted to select only free addons which leave room to upgrade.
 You are still responsible for verifying any fees associated with any addons which will be installed.
-
-To maintain the security of your installation, Django's secret key must be set to a [random string](https://www.grc.com/passwords.htm).
-
-    heroku config:add DJANGO_SECRET_KEY="<random string here>"
 
 For the first deploy, and each new deploy, simply run `git push heroku master`.
 Initially, and when the schema changes, run `syncdb` and `migrate`.
@@ -54,21 +50,18 @@ Initially, and when the schema changes, run `syncdb` and `migrate`.
     heroku run python manage.py migrate
 
 You can view your new deployment in your browser via `heroku open`.
-Static file serving will be broken as this requires an S3 account.
+Static file serving can be modified to use Amazon S3.
 Create a bucket on S3 and add the configuration to your Heroku installation.
 
     heroku config:add AWS_ACCESS_KEY_ID="<AWS access key>"
     heroku config:add AWS_SECRET_ACCESS_KEY="<AWS secret>"
     heroku config:add AWS_STORAGE_BUCKET_NAME="<bucket name>"
 
-
-You can manually run `collectstatic via
+If using S3, you will find `collectstatic` takes a long time to run on every deploy.
+To disable running automatically, simply set `DISABLE_COLLECTSTATIC=1`.
+You can then manually run `collectstatic` via
 
     heroku run python manage.py collectstatic --noinput
-
-Optionally, to have `collectstatic` run automatically on every deploy, use
-
-    heroku labs:enable user-env-compile
 
 
 Dependency management

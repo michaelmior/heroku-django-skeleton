@@ -1,0 +1,18 @@
+{
+  "name": "heroku-django-skeleton",
+  "description": "A simple project to get started with Django on Heroku",
+  "repository": "https://github.com/michaelmior/heroku-django-skeleton",
+  "keywords": ["python", "django", "template", "skeleton"],
+  "env": {
+    "DJANGO_SECRET_KEY": {
+      "description": "A randomly generated secret to secure your Django installation",
+      "generator": "secret"
+    }
+  },
+  "addons": [
+    "newrelic:stark"
+  ],
+  "scripts": {
+    "postdeploy": "sh -c 'python manage.py syncdb --noinput; python manage.py migrate --noinput'"
+  }
+}
