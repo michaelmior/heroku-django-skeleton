@@ -178,7 +178,6 @@ INSTALLED_APPS = (
 
     'south',
     'gunicorn',
-    'raven.contrib.django',
     'djcelery',
     'djangosecure',
 )
