@@ -107,24 +107,26 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 TEMPLATES = [
     {
-        'DEBUG': DEBUG,
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # insert your TEMPLATE_DIRS here
         ],
         'APP_DIRS': True,
         'OPTIONS': {
-            'app.main.context_processors.settings',
-            'app.main.context_processors.site',
+            'debug': DEBUG,
+            'context_processors': [
+                'app.main.context_processors.settings',
+                'app.main.context_processors.site',
 
-            'django.core.context_processors.request',
-            'django.contrib.auth.context_processors.auth'
-            'django.template.context_processors.debug',
-            'django.template.context_processors.i18n',
-            'django.template.context_processors.media',
-            'django.template.context_processors.static',
-            'django.template.context_processors.tz',
-            'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ]
         }
     }
 ]
