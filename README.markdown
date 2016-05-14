@@ -23,9 +23,8 @@ Then copy `env.sample` to `.env`.
 Foreman uses this file to set environment variables when running commands.
 Create a new PostgreSQL database and set the access information.
 
-Issue the following commands to create the database and apply any migrations (this uses [South](http://south.aeracode.org/)).
+Issue the following commands to create the database and apply any migrations.aeracode.org/)).
 
-    foreman run python manage.py syncdb
     foreman run python manage.py migrate
 
 You're now all set for local development, to start the development server, simply run
@@ -46,9 +45,8 @@ While I make no guarantees, I have attempted to select only free addons which le
 You are still responsible for verifying any fees associated with any addons which will be installed.
 
 For the first deploy, and each new deploy, simply run `git push heroku master`.
-Initially, and when the schema changes, run `syncdb` and `migrate`.
+Initially, and when the schema changes, run `migrate`.
 
-    heroku run python manage.py syncdb
     heroku run python manage.py migrate
 
 You can view your new deployment in your browser via `heroku open`.
