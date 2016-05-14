@@ -16,12 +16,9 @@ django-s3-folder-storage==0.3
 django-secure==1.0.1
 django-storages==1.4.1
 gunicorn==19.5.0
-hiredis==0.2.0
 kombu==3.0.35
 newrelic==2.64.0.48
 psycopg2==2.6.1
-python-dateutil==2.5.3
 pytz==2016.4
 redis==2.10.5
-six==1.10.0
 static3==0.7.0
