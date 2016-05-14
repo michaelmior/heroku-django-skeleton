@@ -4,5 +4,5 @@ import app.main.views
 
 
 urlpatterns = [
-    url(r'^', app.main.views.index),
+    url(r'^$', app.main.views.index),
 ]
