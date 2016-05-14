@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from functools import wraps
 
 
-def render_to(template=None, mimetype=None):
+def render_to(template=None, content_type=None):
     """
     Decorator for Django views that sends returned dict to render_to_response
     function.
@@ -14,7 +14,7 @@ def render_to(template=None, mimetype=None):
 
     Parameters:
      - template: template name to use
-     - mimetype: content type to send in response headers
+     - content_type: content type to send in response headers
 
     Examples:
     # 1. Template name in decorator parameters
@@ -60,7 +60,7 @@ def render_to(template=None, mimetype=None):
                     output and output.get('TEMPLATE') or template,
                     output,
                     context_instance=RequestContext(request),
-                    mimetype=mimetype
+                    content_type=content_type
                 )
         return wrapper
     return renderer
