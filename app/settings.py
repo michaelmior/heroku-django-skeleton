@@ -10,6 +10,9 @@ ADMINS = (
 MANAGERS = ADMINS
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.herokuapp.com').split(':')
+SITE_DOMAIN = ALLOWED_HOSTS[0]
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
 
 import dj_database_url
 DATABASES = {'default': dj_database_url.config()}
@@ -26,6 +29,7 @@ SESSION_REDIS_DB = CACHES['default']['OPTIONS']['DB']
 SESSION_REDIS_PASSWORD = CACHES['default']['OPTIONS']['PASSWORD']
 SESSION_REDIS_PREFIX = 'sess'
 SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # Use Redis as the broker for Celery tasks
 BROKER_URL = (lambda password, db: 'redis://:%%s@%(LOCATION)s/%%d' \
