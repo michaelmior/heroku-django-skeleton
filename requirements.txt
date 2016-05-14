@@ -24,5 +24,4 @@ python-dateutil==2.5.3
 pytz==2016.4
 redis==2.10.5
 six==1.10.0
-South==1.0.2
 static3==0.7.0

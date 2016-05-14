@@ -2,7 +2,6 @@
 import os
 
 DEBUG = True if os.environ.get('DJANGO_DEBUG', None) == '1' else False
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -102,20 +101,29 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
+TEMPLATES = [
+    {
+        'DEBUG': DEBUG,
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            # insert your TEMPLATE_DIRS here
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'app.main.context_processors.settings',
+            'app.main.context_processors.site',
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'app.main.context_processors.settings',
-    'app.main.context_processors.site',
-
-    'django.core.context_processors.request',
-    'django.contrib.auth.context_processors.auth'
-)
+            'django.core.context_processors.request',
+            'django.contrib.auth.context_processors.auth'
+            'django.template.context_processors.debug',
+            'django.template.context_processors.i18n',
+            'django.template.context_processors.media',
+            'django.template.context_processors.static',
+            'django.template.context_processors.tz',
+            'django.contrib.messages.context_processors.messages',
+        }
+    }
+]
 
 MIDDLEWARE_CLASSES = (
     'djangosecure.middleware.SecurityMiddleware',
@@ -132,12 +140,6 @@ ROOT_URLCONF = 'app.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'app.wsgi.application'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates"
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
-
 INSTALLED_APPS = (
     'app.main',
     'app.bootstrap',
@@ -152,7 +154,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 
-    'south',
     'gunicorn',
     'djcelery',
     'djangosecure',
