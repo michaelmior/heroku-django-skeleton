@@ -150,6 +150,8 @@ INSTALLED_APPS = (
     'app.main',
     'app.bootstrap',
 
+    'suit',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
