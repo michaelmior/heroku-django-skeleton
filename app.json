@@ -10,7 +10,7 @@
     }
   },
   "addons": [
-    "newrelic:stark",
+    "newrelic:wayne",
     "heroku-redis:hobby-dev"
   ],
   "scripts": {
