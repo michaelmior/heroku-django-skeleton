@@ -2,7 +2,7 @@ amqp==1.4.9
 anyjson==0.3.3
 billiard==3.3.0.23
 boto==2.40.0
-celery==3.1.23
+celery==5.2.2
 celery-with-redis==3.0
 dj-database-url==0.4.1
 dj-static==0.0.6
